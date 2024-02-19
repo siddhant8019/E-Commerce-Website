@@ -11,13 +11,14 @@
 .header__logo {
   width: 100px;
   object-fit: contain;
-  margin: 0 20px;
+  margin: 0 150px;
   margin-top: 18px;
 }
 
 .header__search {
   display: flex;
   flex: 1;
+  justify-content: center;
   align-items: center;
   border-radius: 24px;
 }
@@ -26,7 +27,7 @@
   height: 12px;
   padding: 10px;
   border: none;
-  width: 100%;
+  width: 60%;
 }
 
 .header__searchIcon {
@@ -37,6 +38,10 @@
 
 .header__optionLineOne {
   font-size: 10px;
+}
+
+.header__nav :hover {
+  border: white 1px solid;
 }
 
 .header__optionLineTwo {
@@ -58,6 +63,8 @@
 .header__nav {
   display: flex;
   justify-content: space-evenly;
+  padding: 2%;
+  margin: 2px;
 }
 
 .header__option {
