@@ -2,19 +2,14 @@ const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
 const stripe = require("stripe")(
-  "sk_test_51HPvU9DFg5koCdLGeOEiFvwHat4v8eMjX6SY0YCwxPBQBUPhKy1fPVhiSM5cQtgW7QBG9ydQcXnW57TDxVE2f3H000HSfmEQZF"
+  "sk_test_51OlOWsDP4fdC4C61CYQNyl3rHOsFzIlPygxOvLDDtLmeZhvl46Q2wT68jGpCY8XU9LXDC99cdnXSR4WDJ4vwjam400EwqFciqB"
 );
 
-// API
-
-// - App config
 const app = express();
 
-// - Middlewares
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-// - API routes
 app.get("/", (request, response) => response.status(200).send("hello world"));
 
 app.post("/payments/create", async (request, response) => {
@@ -23,18 +18,13 @@ app.post("/payments/create", async (request, response) => {
   console.log("Payment Request Recieved BOOM!!! for this amount >>> ", total);
 
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: total, // subunits of the currency
+    amount: total,
     currency: "usd",
   });
 
-  // OK - Created
   response.status(201).send({
     clientSecret: paymentIntent.client_secret,
   });
 });
 
-// - Listen command
 exports.api = functions.https.onRequest(app);
-
-// Example endpoint
-// http://localhost:5001/challenge-4b2b2/us-central1/api
